@@ -3,17 +3,16 @@ import {
   ADD_TODO,
   TOGGLE_TODO,
   SET_VISIBILITY_FILTER,
-  VisbilityFilers,
   VisibilityFilters
 } from "./actions";
 const { SHOW_ALL } = VisibilityFilters;
 
 function visbilityFilter(state = SHOW_ALL, action) {
   switch (action.type) {
-    case SET_VISIBILITY_FILTER;
-      return action.filter
+    case SET_VISIBILITY_FILTER:
+      return action.filter;
     default:
-      return state
+      return state;
   }
 }
 
@@ -26,24 +25,24 @@ function todos(state = [], action) {
           text: action.text,
           completed: false
         }
-      ]
+      ];
     case TOGGLE_TODO:
       return state.map((todo, index) => {
         if (index === action.index) {
           return Object.assign({}, todo, {
             completed: !todo.completed
-          })
+          });
         }
-        return todo
-      })
+        return todo;
+      });
     default:
-      return state
+      return state;
   }
 }
 
 const todoApp = combineReducers({
   visbilityFilter,
   todos
-})
+});
 
-export default todoApp
+export default todoApp;
