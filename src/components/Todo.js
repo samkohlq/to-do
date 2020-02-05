@@ -12,6 +12,7 @@ const Todo = ({ onClick, completed, text }) => (
   </li>
 );
 
+// validations
 Todo.propTypes = {
   onClick: PropTypes.func.isRequired,
   completed: PropTypes.bool.isRequired,

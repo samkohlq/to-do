@@ -1,6 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
 import { addTodo } from "../actions";
+
+// defines both logic and presentation - ok for small components
 let AddTodo = ({ dispatch }) => {
   let input;
   return (
