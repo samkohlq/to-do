@@ -10,10 +10,13 @@ let AddTodo = ({ dispatch }) => {
       <form
         onSubmit={e => {
           e.preventDefault();
+          // if no input, return
           if (!input.value.trim()) {
             return;
           }
+          // dispatch user's input to store
           dispatch(addTodo(input.value));
+          // reset input value to blank
           input.value = "";
         }}
       >
