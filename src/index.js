@@ -5,6 +5,7 @@ import { createStore } from "redux";
 import todoApp from "./reducers";
 import App from "./components/App";
 
+// creates store using reducers (todoApp)
 const store = createStore(todoApp);
 render(
   // https://react-redux.js.org/api/provider

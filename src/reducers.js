@@ -7,6 +7,7 @@ import {
 } from "./actions";
 const { SHOW_ALL } = VisibilityFilters;
 
+// initialises state to be the "SHOW_ALL" string
 function visbilityFilter(state = SHOW_ALL, action) {
   switch (action.type) {
     case SET_VISIBILITY_FILTER:
@@ -16,11 +17,14 @@ function visbilityFilter(state = SHOW_ALL, action) {
   }
 }
 
+// initialises state to be an empty array
 function todos(state = [], action) {
   switch (action.type) {
     case ADD_TODO:
       return [
+        // spread operator that creates a copy of the array in state
         ...state,
+        // adds new element and marks completed to false
         {
           text: action.text,
           completed: false

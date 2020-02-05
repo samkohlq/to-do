@@ -8,6 +8,7 @@ let AddTodo = ({ dispatch }) => {
   return (
     <div>
       <form
+        // onSubmit is the event hook
         onSubmit={e => {
           e.preventDefault();
           // if no input, return
@@ -20,15 +21,22 @@ let AddTodo = ({ dispatch }) => {
           input.value = "";
         }}
       >
+        {/* shows text box */}
         <input
+          // assign input node to input variable
           ref={node => {
             input = node;
           }}
         />
+        {/* calls onSubmit function in form component */}
         <button type="submit">Add Todo</button>
       </form>
     </div>
   );
 };
+
+// connectedComponent = connect()(presentationComponent)
 AddTodo = connect()(AddTodo);
+
+// export connected component, ready for import somewhere else
 export default AddTodo;
