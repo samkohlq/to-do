@@ -9,19 +9,14 @@ it("App component renders without crashing", () => {
   shallow(<App />);
 });
 
-test("Footer component renders without crashing", () => {
+it("Footer component renders without crashing", () => {
   shallow(<Footer />);
 });
 
 it("App component contains AddTodo component", () => {
   const wrapper = shallow(<App />);
   const addToDo = <AddTodo />;
-  // expect(wrapper.contains(welcome)).toBe(true);
   expect(wrapper.contains(addToDo)).toEqual(true);
 });
 
 // TODO: figure out how to test with react testing library
-// it("Footer contains Show text", () => {
-//   const { getByText } = render(<Footer />);
-//   expect(getByText("Show")).toBeInTheDocument();
-// });
