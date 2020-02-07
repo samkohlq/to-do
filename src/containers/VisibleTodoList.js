@@ -18,7 +18,8 @@ const getVisibleTodos = (todos, filter) => {
 };
 
 // extracts data from the store
-// passes in todos array and visibility filter in current state, calls getVisibleTodos, returns array returned from getVisibleTodos
+// passes in todos array and visibility filter in current state, calls getVisibleTodos,
+// returns array returned from getVisibleTodos
 // https://react-redux.js.org/using-react-redux/connect-mapstate
 const mapStateToProps = state => {
   return {
