@@ -3,6 +3,37 @@ import express from "express";
 import path from "path";
 import cookieParser from "cookie-parser";
 import logger from "morgan";
+import Sequelize from "sequelize";
+
+// create new sequealize instance with connection params
+const sequelize = new Sequelize(
+  "database_development",
+  "postgres",
+  "postgres",
+  {
+    host: "localhost",
+    dialect: "postgres",
+    port: "5432"
+  }
+);
+
+// connects app to database
+sequelize.authenticate().then(() => {
+  // creating a model
+  const Todo = sequelize.define("todo", {
+    value: Sequelize.STRING,
+    completed: Sequelize.BOOLEAN
+  });
+
+  Todo.sync().then(() => {
+    console.log("synced with database");
+    return Todo.create({
+      value: "foobar",
+      completed: false
+    });
+  });
+  console.log("successfully connected to database");
+});
 
 var app = express();
 
@@ -20,10 +51,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
 app.get("/", (req, res) => {
-  res.send("hello!");
-});
-app.post("/", (req, res) => {
-  res.send("post");
+  res.send("hi");
 });
 
 // catch 404 and forward to error handler
