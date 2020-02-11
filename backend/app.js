@@ -19,12 +19,13 @@ const sequelize = new Sequelize(
 
 // connects app to database
 sequelize.authenticate().then(() => {
-  // creating a model
+  // define the Todo model
   const Todo = sequelize.define("todo", {
     value: Sequelize.STRING,
     completed: Sequelize.BOOLEAN
   });
 
+  // sync model with database
   Todo.sync().then(() => {
     console.log("synced with database");
     return Todo.create({
@@ -51,7 +52,67 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
 app.get("/", (req, res) => {
-  res.send("hi");
+  res.send("home");
+});
+
+// API to retrieve todos
+app.get("/retrieve-todos", (req, res) => {
+  // Todo.findAll({})
+  //   .then(data => {
+  //     console.log(data);
+  //   })
+  //   .catch(err => {
+  //     console.log(err);
+  //   });
+  res.send("get");
+});
+
+// API to create todo
+app.post("/create-todo", (req, res) => {
+  // Todo.create({
+  //   value: "set up CRUD operations",
+  //   completed: false
+  // }).then(() => {
+  //   res.send("post");
+  // });
+  res.send("post");
+});
+
+// API to update completion status to true
+app.put("/update-todo", (req, res) => {
+  // Todo.update(
+  //   {
+  //     completed: true
+  //   },
+  //   {
+  //     where: {
+  //       id: 1
+  //     }
+  //   }
+  // )
+  //   .then(() => {
+  //     console.log("marked task of id 1 to completed");
+  //   })
+  //   .catch(e => {
+  //     console.log("Error" + e);
+  //   });
+  res.send("put");
+});
+
+// API to delete todos
+app.delete("/delete-todo", (req, res) => {
+  // Todo.destroy({
+  //   where: {
+  //     id: 1
+  //   }
+  // })
+  //   .then(() => {
+  //     console.log("deleted an entry!");
+  //   })
+  //   .catch(e => {
+  //     console.log("error" + e);
+  //   });
+  res.send("delete");
 });
 
 // catch 404 and forward to error handler
