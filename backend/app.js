@@ -4,27 +4,27 @@ import path from "path";
 import cookieParser from "cookie-parser";
 import logger from "morgan";
 
-import indexRouter from "./routes/index";
-import usersRouter from "./routes/users";
-
-// create an instance of an express application and assign to variable "app"
 var app = express();
 
-// make method calls on app instance
 // view engine setup
-app.set("views", path.join(__dirname, "views"));
-app.set("view engine", "jade");
-
+// use the following middlewares to enhance our existing req object
+// initialise logger from morgan
 app.use(logger("dev"));
+// convert headers into json and add to request object
 app.use(express.json());
+// decode characters in URL
 app.use(express.urlencoded({ extended: false }));
+// parse cookie header and populate req.cookies
 app.use(cookieParser());
+// allow access to files in the static directory
 app.use(express.static(path.join(__dirname, "public")));
 
-// application will use indexRouter for "/"
-app.use("/", indexRouter);
-// application will use usersRouter from "/users"
-app.use("/users", usersRouter);
+app.get("/", (req, res) => {
+  res.send("hello!");
+});
+app.post("/", (req, res) => {
+  res.send("post");
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
