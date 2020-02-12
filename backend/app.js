@@ -3,39 +3,13 @@ import express from "express";
 import createError from "http-errors";
 import logger from "morgan";
 import path from "path";
-import Sequelize from "sequelize";
 
-// create new sequealize instance with connection params
-const sequelize = new Sequelize(
-  "database_development",
-  "postgres",
-  "postgres",
-  {
-    host: "localhost",
-    dialect: "postgres",
-    port: "5432"
-  }
-);
-
-// define the Todo model
-const Todo = sequelize.define("todo", {
-  value: Sequelize.STRING,
-  completed: Sequelize.BOOLEAN
-});
-
-// sync model with database
-Todo.sync().then(() => {
-  console.log("synced with database");
-  return Todo.create({
-    value: "foobar",
-    completed: false
-  });
-});
-
-// connects app to database
-sequelize.authenticate().then(() => {
-  console.log("successfully connected to database");
-});
+import {
+  createTodo,
+  retrieveTodo,
+  updateTodo,
+  deleteTodo
+} from "./controllers/todoController";
 
 var app = express();
 
@@ -56,53 +30,24 @@ app.get("/", (req, res) => {
   res.send("home");
 });
 
-// API to retrieve todos
-app.get("/retrieve-todos", (req, res) => {
-  Todo.findAll({}).then(() => {
-    res.send("retrieved list of tasks");
-  });
+// API to retrieve todo
+app.get("/retrieve-todo", (req, res) => {
+  retrieveTodo(req, res);
 });
 
 // API to create todo
 app.post("/create-todo", (req, res) => {
-  Todo.create({
-    value: "set up CRUD operations",
-    completed: false
-  }).then(() => {
-    res.send("added a task");
-  });
+  createTodo(req, res);
 });
 
 // API to update completion status to true
 app.put("/update-todo", (req, res) => {
-  Todo.update(
-    {
-      completed: true
-    },
-    {
-      where: {
-        id: 1
-      }
-    }
-    // only send response when "completed" has been updated
-  ).then(() => {
-    res.send("marked task of id 1 to completed");
-  });
+  updateTodo(req, res);
 });
 
 // API to delete todos
 app.delete("/delete-todo", (req, res) => {
-  Todo.destroy({
-    where: {
-      id: 2
-    }
-  })
-    .then(() => {
-      res.send("deleted task of id 2");
-    })
-    .catch(e => {
-      console.log("error" + e);
-    });
+  deleteTodo(req, res);
 });
 
 // catch 404 and forward to error handler
@@ -118,6 +63,7 @@ app.use(function(err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
+  res.send(err.message);
 });
 
 module.exports = app;
