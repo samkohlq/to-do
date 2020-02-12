@@ -1,8 +1,8 @@
-import createError from "http-errors";
-import express from "express";
-import path from "path";
 import cookieParser from "cookie-parser";
+import express from "express";
+import createError from "http-errors";
 import logger from "morgan";
+import path from "path";
 import Sequelize from "sequelize";
 
 // create new sequealize instance with connection params
@@ -58,8 +58,9 @@ app.get("/", (req, res) => {
 
 // API to retrieve todos
 app.get("/retrieve-todos", (req, res) => {
-  Todo.findAll({}).then(() => {});
-  res.send("retrieved list of tasks");
+  Todo.findAll({}).then(() => {
+    res.send("retrieved list of tasks");
+  });
 });
 
 // API to create todo
@@ -67,8 +68,9 @@ app.post("/create-todo", (req, res) => {
   Todo.create({
     value: "set up CRUD operations",
     completed: false
-  }).then(() => {});
-  res.send("added a task");
+  }).then(() => {
+    res.send("added a task");
+  });
 });
 
 // API to update completion status to true
@@ -82,8 +84,10 @@ app.put("/update-todo", (req, res) => {
         id: 1
       }
     }
-  ).then(() => {});
-  res.send("marked task of id 1 to completed");
+    // only send response when "completed" has been updated
+  ).then(() => {
+    res.send("marked task of id 1 to completed");
+  });
 });
 
 // API to delete todos
@@ -93,11 +97,12 @@ app.delete("/delete-todo", (req, res) => {
       id: 2
     }
   })
-    .then(() => {})
+    .then(() => {
+      res.send("deleted task of id 2");
+    })
     .catch(e => {
       console.log("error" + e);
     });
-  res.send("deleted task of id 2");
 });
 
 // catch 404 and forward to error handler
@@ -113,7 +118,6 @@ app.use(function(err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  // res.render("error");
 });
 
 module.exports = app;
