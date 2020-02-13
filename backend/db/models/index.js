@@ -1,4 +1,5 @@
-// set up db as an exported variable
+/** set up db as an exported variable */
+
 "use strict";
 
 const fs = require("fs");
@@ -9,8 +10,10 @@ const env = process.env.NODE_ENV || "development";
 const config = require(__dirname + "/../config/config.json")[env];
 const db = {};
 
-// initialize Sequelize with configuration file information
-// establish connection to database
+/*
+ * initialize Sequelize with configuration file information
+ * establish connection to database
+ */
 let sequelize;
 if (config.use_env_variable) {
   sequelize = new Sequelize(process.env[config.use_env_variable], config);
@@ -23,7 +26,9 @@ if (config.use_env_variable) {
   );
 }
 
-// create a new Sequelize Model for each file in the models folder
+/*
+ * create a new Sequelize Model for each file in the models folder
+ */
 // read current directory
 fs.readdirSync(__dirname)
   // for each file that ends with .js

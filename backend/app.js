@@ -13,7 +13,6 @@ import {
 
 var app = express();
 
-// view engine setup
 // use the following middlewares to enhance our existing req object
 // initialise logger from morgan
 app.use(logger("dev"));
@@ -61,7 +60,7 @@ app.use(function(err, req, res, next) {
   res.locals.message = err.message;
   res.locals.error = req.app.get("env") === "development" ? err : {};
 
-  // render the error page
+  // send error message in response
   res.status(err.status || 500);
   res.send(err.message);
 });

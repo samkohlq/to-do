@@ -9,9 +9,6 @@ module.exports = (sequelize, DataTypes) => {
     },
     {}
   );
-  Todo.associate = function(models) {
-    // associations can be defined here
-  };
   // return model
   return Todo;
 };
