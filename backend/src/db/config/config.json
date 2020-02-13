@@ -15,11 +15,6 @@
     "dialect": "postgres"
   },
   "production": {
-    "username": "vdfedtnxyrktqy",
-    "password": "1c2db216f2b54a62f4fc8e98bc0d64c5282df3de5e53bb190d9a7db65e35d3ba",
-    "database": "dee104747i880v",
-    "port": 5432,
-    "host": "ec2-34-200-116-132.compute-1.amazonaws.com",
-    "dialect": "postgres"
+    "use_env_variable": "DATABASE_URL"
   }
 }
