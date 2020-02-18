@@ -1,5 +1,6 @@
 import cookieParser from "cookie-parser";
 import "core-js/stable";
+import cors from "cors";
 import express from "express";
 import createError from "http-errors";
 import logger from "morgan";
@@ -18,6 +19,8 @@ var app = express();
 // use the following middlewares to enhance our existing req object
 // initialise logger from morgan
 app.use(logger("dev"));
+// use cors to allow frontend to access backend database
+app.use(cors());
 // convert headers into json and add to request object
 app.use(express.json());
 // decode characters in URL
