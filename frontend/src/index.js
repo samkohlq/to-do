@@ -1,13 +1,12 @@
 import React from "react";
 import { render } from "react-dom";
 import { Provider } from "react-redux";
-import { createStore } from "redux";
 
-import rootReducer from "./reducers";
 import App from "./components/App";
+import configureStore from "./configureStore";
 
-// creates store using reducers (todoApp)
-const store = createStore(rootReducer);
+const store = configureStore();
+
 render(
   // https://react-redux.js.org/api/provider
   // <Provider /> makes the Redux store available to any nested components wrapped in the connect() function

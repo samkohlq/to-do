@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 
-import { toggleTodo } from "../actions";
+import { fetchTodos, toggleTodo } from "../actions";
 import TodoList from "../components/TodoList";
 
 // returns an array, filtered if a filter is present
@@ -23,7 +23,7 @@ const getVisibleTodos = (todos, filter) => {
 // https://react-redux.js.org/using-react-redux/connect-mapstate
 const mapStateToProps = state => {
   return {
-    todos: getVisibleTodos(state.todos, state.visibilityFilter)
+    todos: getVisibleTodos(state.todos.todos, state.visibilityFilter)
   };
 };
 
@@ -32,7 +32,10 @@ const mapStateToProps = state => {
 // https://react-redux.js.org/using-react-redux/connect-mapdispatch
 const mapDispatchToProps = dispatch => {
   return {
-    onTodoClick: id => {
+    fetchTodos: () => {
+      dispatch(fetchTodos());
+    },
+    toggleTodo: id => {
       // dispatch the toggleTodo action on click
       dispatch(toggleTodo(id));
     }

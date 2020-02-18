@@ -3,13 +3,24 @@ import PropTypes from "prop-types";
 
 import Todo from "./Todo";
 
-const TodoList = ({ todos, onTodoClick }) => (
-  <ul>
-    {todos.map((todo, index) => (
-      <Todo key={index} {...todo} onClick={() => onTodoClick(index)} />
-    ))}
-  </ul>
-);
+class TodoList extends React.Component {
+  // retrieve data when component has mounted
+  componentDidMount() {
+    this.props.fetchTodos();
+  }
+
+  render() {
+    // deconstructing object and extracting todos, toggleTodo
+    const { todos, toggleTodo } = this.props;
+    return (
+      <ul>
+        {todos.map(todo => (
+          <Todo key={todo.id} {...todo} onClick={() => toggleTodo(todo.id)} />
+        ))}
+      </ul>
+    );
+  }
+}
 
 // validations
 TodoList.propTypes = {
@@ -20,7 +31,7 @@ TodoList.propTypes = {
       text: PropTypes.string.isRequired
     }).isRequired
   ).isRequired,
-  onTodoClick: PropTypes.func.isRequired
+  toggleTodo: PropTypes.func.isRequired
 };
 
 export default TodoList;

@@ -1,27 +1,51 @@
-import { ADD_TODO, TOGGLE_TODO } from "../actions";
+import {
+  ADD_TODO,
+  RECEIVE_TODOS,
+  REQUEST_TODOS,
+  TOGGLE_TODO
+} from "../actions";
+
+const initialState = {
+  isFetching: false,
+  todos: []
+};
 
 // initialises state to be an empty array
-function todos(state = [], action) {
+function todos(state = initialState, action) {
   switch (action.type) {
     case ADD_TODO:
-      return [
+      return {
         // spread operator that creates a copy of the array in state
         ...state,
-        // adds new element and marks completed to false
-        {
-          text: action.text,
-          completed: false
-        }
-      ];
+        todos: [
+          ...state.todos,
+          // adds new element and marks completed to false
+          {
+            id: action.id,
+            text: action.text,
+            completed: false
+          }
+        ]
+      };
+    case REQUEST_TODOS:
+      return {
+        ...state,
+        isFetching: true
+      };
+    case RECEIVE_TODOS:
+      return {
+        ...state,
+        isFetching: false,
+        todos: action.todos
+      };
     case TOGGLE_TODO:
-      return state.map((todo, index) => {
-        if (index === action.index) {
-          return Object.assign({}, todo, {
-            completed: !todo.completed
-          });
-        }
-        return todo;
-      });
+      return {
+        ...state,
+        // goes through all todos, if id equals action id, flip the completed status
+        todos: state.todos.map(todo =>
+          todo.id === action.id ? { ...todo, completed: !todo.completed } : todo
+        )
+      };
     default:
       return state;
   }
