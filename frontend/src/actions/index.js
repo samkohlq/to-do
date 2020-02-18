@@ -16,8 +16,8 @@ export const VisibilityFilters = {
 
 // action creators
 let nextTodoId = 0;
-export function addTodo(text) {
-  return { type: ADD_TODO, id: nextTodoId++, text };
+export function addTodo(value) {
+  return { type: ADD_TODO, id: nextTodoId++, value };
 }
 
 export function requestTodos() {
@@ -43,8 +43,8 @@ export const fetchTodos = () => {
   };
 };
 
-export function toggleTodo(index) {
-  return { type: TOGGLE_TODO, index };
+export function toggleTodo(id) {
+  return { type: TOGGLE_TODO, id };
 }
 
 export function setVisibilityFilter(filter) {

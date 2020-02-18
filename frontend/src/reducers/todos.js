@@ -22,7 +22,7 @@ function todos(state = initialState, action) {
           // adds new element and marks completed to false
           {
             id: action.id,
-            text: action.text,
+            value: action.value,
             completed: false
           }
         ]
