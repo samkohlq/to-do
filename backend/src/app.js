@@ -8,7 +8,7 @@ import "regenerator-runtime/runtime";
 
 import {
   createTodo,
-  retrieveTodo,
+  retrieveTodos,
   updateTodo,
   deleteTodo
 } from "./controllers/todoController";
@@ -32,8 +32,8 @@ app.get("/", (req, res) => {
 });
 
 // API to retrieve todo
-app.get("/retrieve-todo", (req, res) => {
-  retrieveTodo(req, res);
+app.get("/retrieve-todos", (req, res) => {
+  retrieveTodos(req, res);
 });
 
 // API to create todo

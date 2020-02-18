@@ -9,11 +9,9 @@ export const createTodo = async (req, res) => {
   res.send("added a todo");
 };
 
-export const retrieveTodo = async (req, res) => {
-  // TODO(samkohlq): return todo that corresponds with id provided by user
-  const id = req.body.id;
-  await Todo.findAll({});
-  res.send("attempted to retrieve todo of id " + id);
+export const retrieveTodos = async (req, res) => {
+  const todos = await Todo.findAll({});
+  res.send(todos);
 };
 
 /** updates completed status of todo, based on todo id provided by user */
