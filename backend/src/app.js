@@ -8,7 +8,7 @@ import path from "path";
 import "regenerator-runtime/runtime";
 
 import {
-  createTodo,
+  addTodo,
   retrieveTodos,
   updateTodo,
   deleteTodo
@@ -40,8 +40,8 @@ app.get("/retrieve-todos", (req, res) => {
 });
 
 // API to create todo
-app.post("/create-todo", (req, res) => {
-  createTodo(req, res);
+app.post("/add-todo", (req, res) => {
+  addTodo(req, res);
 });
 
 // API to update completion status to true

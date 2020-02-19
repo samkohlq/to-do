@@ -1,6 +1,6 @@
 import { Todo } from "../db/models";
 
-export const createTodo = async (req, res) => {
+export const addTodo = async (req, res) => {
   const value = req.body.value;
   await Todo.create({
     value: value,
