@@ -35,8 +35,6 @@ function todos(state = initialState, action) {
       return {
         ...state,
         todos: state.todos.map(todo => {
-          // console.log(`req todo: ${todo.id}`);
-          // console.log(`req action.id: ${action.id}`);
           // if todo.id matches action.id, copy everything else from state
           // and set isFetching to true
           return todo.id === action.id
@@ -51,8 +49,6 @@ function todos(state = initialState, action) {
       return {
         ...state,
         todos: state.todos.map(todo => {
-          // console.log(`rec todo: ${todo.id}`);
-          // console.log(`rec action.id: ${action.id}`);
           // if todo.id matches action.id, copy everything else from state,
           // set isFetching to false and flip completed status
           return todo.id === action.id

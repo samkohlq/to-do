@@ -22,13 +22,10 @@ export const updateTodo = id => {
         // only runs when promise returned by fetch is successful
         // pulls out body of json and converts it to json
         .then(response => {
-          console.log(response);
           return response.json();
         })
-        // .then(response => response.json())
-        // takes in id of todo and dispatches
+        // takes in id of todo and dispatches receiveUpdateTodoSuccess action
         .then(json => {
-          console.log(json);
           return dispatch(receiveUpdateTodoSuccess(json.id));
         })
     );
