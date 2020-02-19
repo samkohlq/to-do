@@ -19,7 +19,8 @@ export const updateTodo = async (req, res) => {
   const id = req.body.id;
   const todoToUpdate = await Todo.findByPk(id);
   await todoToUpdate.update({ completed: !todoToUpdate.completed });
-  res.send(todoToUpdate.completed);
+  // sends updated status as response to request from frontend
+  res.send(todoToUpdate);
 };
 
 /** deletes todo based on todo id provided by user */
