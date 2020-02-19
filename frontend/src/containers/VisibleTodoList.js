@@ -1,6 +1,7 @@
 import { connect } from "react-redux";
 
-import { fetchTodos, toggleTodo } from "../actions";
+import { updateTodo } from "../actions/updateTodo";
+import { fetchTodos } from "../actions/retrieveTodos";
 import TodoList from "../components/TodoList";
 
 // returns an array, filtered if a filter is present
@@ -17,7 +18,7 @@ const getVisibleTodos = (todos, filter) => {
   }
 };
 
-// extracts data from the store
+// extracts specific data from the store
 // passes in todos array and visibility filter in current state, calls getVisibleTodos,
 // returns array returned from getVisibleTodos
 // https://react-redux.js.org/using-react-redux/connect-mapstate
@@ -33,15 +34,14 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     fetchTodos: () => {
+      // dispatch fetchTodo action
       dispatch(fetchTodos());
     },
-    toggleTodo: id => {
-      // dispatch the toggleTodo action on click
-      dispatch(toggleTodo(id));
+    updateTodo: id => {
+      // dispatch updateTodo action on click
+      dispatch(updateTodo(id));
     }
   };
 };
 
-const VisibleTodoList = connect(mapStateToProps, mapDispatchToProps)(TodoList);
-
-export default VisibleTodoList;
+export default connect(mapStateToProps, mapDispatchToProps)(TodoList);

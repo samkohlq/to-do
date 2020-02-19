@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { addTodo } from "../actions";
 
 // defines both logic and presentation - ok for small components
-let AddTodo = ({ dispatch }) => {
+const AddTodo = ({ dispatch }) => {
   let input;
   return (
     <div>
@@ -36,8 +36,5 @@ let AddTodo = ({ dispatch }) => {
   );
 };
 
-// connectedComponent = connect()(presentationComponent)
-AddTodo = connect()(AddTodo);
-
 // export connected component, ready for import somewhere else
-export default AddTodo;
+export default connect()(AddTodo);
