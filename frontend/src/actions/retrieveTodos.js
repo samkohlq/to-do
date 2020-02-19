@@ -7,7 +7,7 @@ export const receiveTodos = todos => ({
   todos
 });
 
-export const fetchTodos = () => {
+export const retrieveTodos = () => {
   return dispatch => {
     dispatch(requestTodos());
     return fetch("http://localhost:4000/retrieve-todos")

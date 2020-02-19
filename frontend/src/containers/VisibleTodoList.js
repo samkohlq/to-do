@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 
 import { updateTodo } from "../actions/updateTodo";
-import { fetchTodos } from "../actions/retrieveTodos";
+import { retrieveTodos } from "../actions/retrieveTodos";
 import TodoList from "../components/TodoList";
 
 // returns an array, filtered if a filter is present
@@ -33,9 +33,9 @@ const mapStateToProps = state => {
 // https://react-redux.js.org/using-react-redux/connect-mapdispatch
 const mapDispatchToProps = dispatch => {
   return {
-    fetchTodos: () => {
-      // dispatch fetchTodo action
-      dispatch(fetchTodos());
+    retrieveTodos: () => {
+      // dispatch retrieveTodo action
+      dispatch(retrieveTodos());
     },
     updateTodo: id => {
       // dispatch updateTodo action on click

@@ -6,7 +6,7 @@ import Todo from "./Todo";
 class TodoList extends React.Component {
   // retrieve data when component has mounted
   componentDidMount() {
-    this.props.fetchTodos();
+    this.props.retrieveTodos();
   }
 
   render() {
