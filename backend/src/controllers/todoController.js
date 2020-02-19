@@ -17,17 +17,9 @@ export const retrieveTodos = async (req, res) => {
 /** updates completed status of todo, based on todo id provided by user */
 export const updateTodo = async (req, res) => {
   const id = req.body.id;
-  await Todo.update(
-    {
-      completed: true
-    },
-    {
-      where: {
-        id: id
-      }
-    }
-  );
-  res.send("marked todo of specific id to completed");
+  const todoToUpdate = await Todo.findByPk(id);
+  await todoToUpdate.update({ completed: !todoToUpdate.completed });
+  res.send(todoToUpdate.completed);
 };
 
 /** deletes todo based on todo id provided by user */
