@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 
-import { setVisibilityFilter } from "../actions";
+import { setVisibilityFilter } from "../actions/setVisibilityFilter";
 import Link from "../components/Link";
 
 // extracts data from the store
