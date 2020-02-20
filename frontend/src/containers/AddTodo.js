@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 
-import { addTodo } from "../actions";
+import { createTodo } from "../actions";
 
 // defines both logic and presentation - ok for small components
 const AddTodo = ({ dispatch }) => {
@@ -17,7 +17,7 @@ const AddTodo = ({ dispatch }) => {
             return;
           }
           // dispatch user's input to store
-          dispatch(addTodo(input.value));
+          dispatch(createTodo(input.value));
           // reset input value to blank
           input.value = "";
         }}

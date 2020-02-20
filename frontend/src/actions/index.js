@@ -1,6 +1,37 @@
-let nextTodoId = 0;
-export const addTodo = value => ({
-  type: "ADD_TODO",
-  id: nextTodoId++,
+export const requestCreateTodo = value => ({
+  type: "REQUEST_CREATE_TODO",
   value
 });
+
+export const receiveCreateTodoSuccess = todoCreated => ({
+  type: "RECEIVE_CREATE_TODO_SUCCESS",
+  todoCreated
+});
+
+export const createTodo = value => {
+  return dispatch => {
+    dispatch(requestCreateTodo(value));
+    return (
+      fetch("http://localhost:4000/create-todo", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          value
+        })
+      })
+        // only runs when promise returned by fetch is successful
+        // pulls out body of json and converts it to json
+        .then(response => {
+          console.log(response);
+          return response.json();
+        })
+        // takes in value of new todo and dispatches receiveCreateTodoSuccess action
+        .then(json => {
+          console.log(json);
+          return dispatch(receiveCreateTodoSuccess(json));
+        })
+    );
+  };
+};

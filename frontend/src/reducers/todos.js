@@ -6,17 +6,22 @@ const initialState = {
 // initialises state to be an empty array
 function todos(state = initialState, action) {
   switch (action.type) {
-    case "ADD_TODO":
+    case "REQUEST_CREATE_TODO":
       return {
         // spread operator that creates a copy of the array in state
         ...state,
+        isFetching: true
+      };
+    case "RECEIVE_CREATE_TODO_SUCCESS":
+      return {
+        ...state,
+        isFetching: false,
         todos: [
           ...state.todos,
-          // adds new element and marks completed to false
           {
-            id: action.id,
-            value: action.value,
-            completed: false
+            id: action.todoCreated.id,
+            value: action.todoCreated.value,
+            completed: action.todoCreated.completed
           }
         ]
       };

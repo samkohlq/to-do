@@ -1,5 +1,7 @@
 import { connect } from "react-redux";
 
+// import { createTodo } from "../actions";
+import { createTodo } from "../actions";
 import { updateTodo } from "../actions/updateTodo";
 import { retrieveTodos } from "../actions/retrieveTodos";
 import TodoList from "../components/TodoList";
@@ -33,6 +35,10 @@ const mapStateToProps = state => {
 // https://react-redux.js.org/using-react-redux/connect-mapdispatch
 const mapDispatchToProps = dispatch => {
   return {
+    createTodo: value => {
+      // dispatch createTodo action
+      dispatch(createTodo(value));
+    },
     retrieveTodos: () => {
       // dispatch retrieveTodo action
       dispatch(retrieveTodos());
