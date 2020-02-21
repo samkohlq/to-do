@@ -12,7 +12,7 @@ export const updateTodo = id => {
   return dispatch => {
     dispatch(requestUpdateTodo(id));
     return (
-      fetch("http://localhost:4000/update-todo", {
+      fetch("https://intense-refuge-66191.herokuapp.com/update-todo", {
         method: "PUT",
         headers: {
           "Content-Type": "application/json"

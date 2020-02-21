@@ -10,7 +10,7 @@ export const receiveTodos = todos => ({
 export const retrieveTodos = () => {
   return dispatch => {
     dispatch(requestTodos());
-    return fetch("http://localhost:4000/retrieve-todos")
+    return fetch("https://intense-refuge-66191.herokuapp.com/retrieve-todos")
       .then(response => response.json())
       .then(json => dispatch(receiveTodos(json)));
   };

@@ -12,7 +12,7 @@ export const createTodo = value => {
   return dispatch => {
     dispatch(requestCreateTodo(value));
     return (
-      fetch("http://localhost:4000/create-todo", {
+      fetch("https://intense-refuge-66191.herokuapp.com/create-todo", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
