@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 
 // import { createTodo } from "../actions";
-import { createTodo } from "../actions";
+import { createTodo } from "../actions/createTodo";
 import { updateTodo } from "../actions/updateTodo";
 import { retrieveTodos } from "../actions/retrieveTodos";
 import TodoList from "../components/TodoList";

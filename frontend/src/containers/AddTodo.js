@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 
-import { createTodo } from "../actions";
+import { createTodo } from "../actions/createTodo";
 
 // defines both logic and presentation - ok for small components
 const AddTodo = ({ dispatch }) => {
