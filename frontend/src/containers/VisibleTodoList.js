@@ -1,9 +1,7 @@
 import { connect } from "react-redux";
-
-// import { createTodo } from "../actions";
 import { createTodo } from "../actions/createTodo";
-import { updateTodo } from "../actions/updateTodo";
 import { retrieveTodos } from "../actions/retrieveTodos";
+import { updateTodo } from "../actions/updateTodo";
 import TodoList from "../components/TodoList";
 
 // returns an array, filtered if a filter is present
