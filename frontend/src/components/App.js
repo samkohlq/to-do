@@ -1,15 +1,21 @@
 import React from "react";
-
-import Footer from "./Footer";
+import { Container, Row } from "react-bootstrap";
 import AddTodo from "../containers/AddTodo";
 import VisibleTodoList from "../containers/VisibleTodoList";
+import Filter from "./Filter";
 
 const App = () => (
-  <div>
-    <AddTodo />
-    <VisibleTodoList />
-    <Footer />
-  </div>
+  <Container>
+    <Row className="mt-5">
+      <AddTodo />
+    </Row>
+    <Row className="my-2">
+      <Filter />
+    </Row>
+    <Row>
+      <VisibleTodoList />
+    </Row>
+  </Container>
 );
 
 export default App;

@@ -1,6 +1,6 @@
-import React from "react";
 import PropTypes from "prop-types";
-
+import React from "react";
+import { ListGroup } from "react-bootstrap";
 import Todo from "./Todo";
 
 class TodoList extends React.Component {
@@ -13,11 +13,11 @@ class TodoList extends React.Component {
     // deconstructing object and extracting todos, updateTodo
     const { todos, updateTodo } = this.props;
     return (
-      <ul>
+      <ListGroup variant="flush">
         {todos.map(todo => (
           <Todo key={todo.id} {...todo} onClick={() => updateTodo(todo.id)} />
         ))}
-      </ul>
+      </ListGroup>
     );
   }
 }
